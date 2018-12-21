@@ -11,8 +11,9 @@
    <div class="wrapper">
       <nav>
         <ul>
-          <li id="trackX"></li>
-          <li id="trackY"></li>
+          <li><button id="trackX">X: 0</button></li>
+          <li><button id="trackY">Y: 0</button></li>
+          <!--<li><button id="trackY:   "></button></li>-->
           <li><button id="btnRect">Rectangle</button>
           </li> 
           <li><button id="btnLine">Line</button>
@@ -21,10 +22,23 @@
           </li>
           <li><button id="btnPath">Path</button>
           </li>
+          <li><button id="btnTriangle">Triangle</button>
+          </li>
+          <input type = "color1" name = "fill" id="colorFill" />
+          <input type = "color2" name = "stroke" id="colorStroke" />
+          <input type = "button" onclick="getColor" value="Fill" />
         </ul>
+
+    <section class="color">
+        <button id="btnRandom">Random</button>
+        <button id="btnStroke">Stroke</button>
+    </section>   
+
+        
       </nav>
+
       <main></main>
-    </div>
+  </div>  
     <script src="./dist/js/main.js"></script>
   </body>
 </html>

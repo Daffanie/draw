@@ -4,6 +4,7 @@ html {
   
   .wrapper {
     display: flex;
+    
   }
   
   nav {
@@ -37,4 +38,11 @@ html {
   
   nav ul li button {
     width: 100%;
+  }
+
+  nav section .color{
+    width: 25 rem;
+    padding: 10rem;
+    background-color: blue;
+
   }

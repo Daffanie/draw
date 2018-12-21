@@ -35,6 +35,14 @@ var draw = (function(){
 
     var isDrawing = false;
 
+    //var strokeColor = 'rand';
+    //var fillColor = 'rand';
+
+    //function randColor(){
+
+
+    //}
+
     //Everything above the return statement is private
     //Access is being down through draw.init()
     return {
@@ -64,8 +72,12 @@ var draw = (function(){
 
             document.getElementById('trackX').innerHTML = 'X: ' + x;
             document.getElementById('trackY').innerHTML = 'Y: ' + y;
+
+            document.getElementById('colorFIll').innerHTML = color1;
+            document.getElementById('colorStroke').innerHTML = color2; 
         },
 
+        //Draw a rectangle function
         draw: function(){
             ctx.restore();
             if(shape === 'rectangle')
@@ -77,7 +89,9 @@ var draw = (function(){
                 this.drawCircle();
             }else if(shape === 'path'){
                 this.drawPath();
-            }else{    
+            }else if (shape === 'triangle'){
+                this.drawTriangle();
+            }else {   
                 alert('Please choose a shape!');
             }
             ctx.save();
@@ -86,7 +100,7 @@ var draw = (function(){
         //Draw a path
         drawPath: function(){
                 //Start by using random fill colors.
-                ctx.strokeStyle = '#'+Math.floor(Math.random()*16777215).toString(16);
+                //ctx.strokeStyle = '#'+Math.floor(Math.random()*16777215).toString(16);
                 ctx.beginPath();
                 ctx.moveTo(lx, ly);
                 ctx.lineTo(x, y);
@@ -96,8 +110,8 @@ var draw = (function(){
 
         //Draw a circle
         drawCircle: function(){
-            ctx.strokeStyle = '#' + Math.floor(Math.random()*16777215).toString(16);
-            ctx.fillStyle = '#' + Math.floor(Math.random()*16777215).toString(16);
+            //ctx.strokeStyle = '#' + Math.floor(Math.random()*16777215).toString(16);
+            //ctx.fillStyle = '#' + Math.floor(Math.random()*16777215).toString(16);
 
             let a = (x1-x2);
             let b = (y1-y2);
@@ -130,20 +144,37 @@ var draw = (function(){
        
         //Draw a rect
         drawRect: function(){
-            ctx.fillStyle = '#' + Math.floor(Math.random()*16777215).toString(16);
+            //ctx.fillStyle = '#' + Math.floor(Math.random()*16777215).toString(16);
             ctx.fillRect(x1, y1, (x2-x1), (y2-y1));
         },
 
         //Draw a line
         drawLine: function() {
             //Start by using random fill colors.
-            ctx.strokeStyle = '#'+Math.floor(Math.random()*16777215).toString(16);
+            //ctx.strokeStyle = '#'+Math.floor(Math.random()*16777215).toString(16);
             ctx.beginPath();
             ctx.moveTo(x1, y1);
             ctx.lineTo(x2, y2);
             ctx.lineWidth = 15;
             ctx.stroke();
-  },
+        },
+
+         //Draw a triangle
+         drawTriangle: function() {
+            //alert('I don\'t do anything write now!');
+            
+            //Start by using random fill colors.
+            //ctx.strokeStyle = '#'+Math.floor(Math.random()*16777215).toString(16);
+            //ctx.fillStyle = '#'+Math.floor(Math.random()*16777215).toString(16);
+            ctx.beginPath();
+            ctx.moveTo(x1, y1);
+            ctx.lineTo(x2, y2);
+            ctx.lineTo(y2, x2);
+            ctx.closePath();
+            ctx.lineWidth = 20;
+            ctx.stroke();
+            ctx.fill();
+        },    
         
         getCanvas: function(){
             return canvas;
@@ -201,4 +232,20 @@ document.getElementById('btnCircle').addEventListener('click', function(){
 
 document.getElementById('btnPath').addEventListener('click', function(){       
     draw.setShape('path');
+});
+
+document.getElementById('btnTriangle').addEventListener('click', function(){       
+    draw.setShape('triangle');
+});
+
+document.getElementById('randFIllColor').addEventListener('change', function(){       
+    if(document.getElementById('randStrokeColr').checked==true){
+        draw.setColor('fill', 'rand'); 
+    }
+});
+
+document.getElementById('randStrokeColor').addEventListener('change', function(){       
+    if(document.getElementById('randStrokeColor').checked==true){
+        draw.setShape('stroke', 'rand');
+    }
 });
